@@ -20,8 +20,9 @@ Dejar el contrato escrito antes de escribir código.
 - [x] `CLAUDE.md`, `SPEC.md`, `DATASET.md`, `DECISIONS.md`, `PLAN.md`, `EXPERIMENTS.md`
 - [x] `README.md`, `requirements.txt`, `.gitignore`
 - [x] Estructura de carpetas
-- [ ] Esqueleto del notebook con todas las secciones del SPEC
-- [ ] `git init`, primer commit, repositorio remoto
+- [x] Esqueleto del notebook con todas las secciones del SPEC (114 celdas)
+- [x] `git init`, primer commit, repositorio remoto
+      (`Aguado4/miniproyecto-1-nlp-Aguado-Cruz-Ramirez`, privado)
 
 **Salida:** especificación completa y notebook vacío pero estructurado.
 
