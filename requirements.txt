@@ -1,0 +1,42 @@
+# Miniproyecto 1 — NLP
+# Instalación local:  pip install -r requirements.txt
+#                     python -m spacy download es_core_news_lg
+#
+# En Colab la mayoría ya viene preinstalado; el notebook instala solo lo que falta.
+# Versiones con cota inferior, no fijadas, para no romper el entorno de Colab.
+
+# --- Datos y cómputo numérico ---
+numpy>=1.26
+pandas>=2.2
+scipy>=1.13
+scikit-learn>=1.5
+
+# --- Corpus ---
+datasets>=2.19
+huggingface-hub>=0.23
+
+# --- Deep learning ---
+torch>=2.2
+torchmetrics>=1.4
+
+# --- Transformers en español (BETO) ---
+transformers>=4.40
+accelerate>=0.30
+
+# --- Embeddings preentrenados en español ---
+# El modelo de vectores se descarga aparte:
+#   python -m spacy download es_core_news_lg
+spacy>=3.7
+
+# --- Visualización ---
+matplotlib>=3.8
+seaborn>=0.13
+
+# --- Proyección 2D del espacio de embeddings (Extensión D) ---
+# scikit-learn ya trae t-SNE; umap-learn es opcional y más lento de instalar.
+umap-learn>=0.5
+
+# --- Entorno ---
+jupyterlab>=4.0
+ipywidgets>=8.1
+tqdm>=4.66
