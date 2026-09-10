@@ -70,7 +70,33 @@ Ficha completa, estadísticas verificadas y sesgos conocidos: [`docs/DATASET.md`
 
 ## Resultados
 
-_(Se completa tras la corrida final. Ver [`docs/EXPERIMENTS.md`](docs/EXPERIMENTS.md).)_
+Corrida de referencia completa (`Restart & Run All`, sin errores). Detalle completo con
+todas las métricas, extensiones y análisis de errores en
+[`docs/EXPERIMENTS.md`](docs/EXPERIMENTS.md).
+
+| Modelo | macro-F1 | Accuracy | MAE | QWK |
+|---|---:|---:|---:|---:|
+| Baseline (clase mayoritaria) | 0.159 | 0.657 | 0.549 | 0.000 |
+| TF-IDF + Regresión Logística | 0.524 | 0.679 | 0.376 | 0.726 |
+| LSTM desde cero | 0.295 | 0.576 | 0.651 | 0.355 |
+| BiLSTM + spaCy (afinada) | 0.486 | 0.636 | 0.431 | 0.694 |
+| **BiLSTM + atención (Extensión C)** | **0.527** | 0.676 | 0.362 | 0.755 |
+
+El Modelo 4 (BETO) se excluyó de esta entrega por indicación del profesor
+([`docs/DECISIONS.md`](docs/DECISIONS.md) §D-009); en su lugar, la Extensión C (atención)
+es la que termina superando al baseline clásico de TF-IDF.
+
+Tres hallazgos centrales, desarrollados en la Sección 15 del notebook:
+
+1. La misma arquitectura pasa de macro-F1 0.486 en polaridad a **0.949** prediciendo el tipo
+   de establecimiento (`Type`, balanceado, no ordinal): la dificultad está en la tarea, no en
+   el modelo.
+2. Tratar la polaridad como ordinal (regresión con umbrales o codificación acumulativa) no
+   sube mucho el macro-F1, pero corta a la mitad los errores graves (a ≥2 estrellas de
+   distancia).
+3. El modelo generaliza igual de bien a regiones de México nunca vistas en entrenamiento
+   (Chiapas, Baja California Sur, Querétaro) — contra la hipótesis inicial de que dependería
+   de memorizar destinos.
 
 ## Cómo ejecutarlo
 

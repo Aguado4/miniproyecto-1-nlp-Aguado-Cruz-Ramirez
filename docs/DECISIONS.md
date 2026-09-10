@@ -161,6 +161,36 @@ resultados sin ejecutar nada.
 
 ---
 
+## D-009 · Exclusión del Modelo 4 (BETO) de esta entrega
+
+**Estado:** aceptada · 2026-09-09
+
+**Contexto.** El SPEC original (§2, Sección 8) contemplaba cuatro modelos, el último un
+fine-tuning de `dccuchile/bert-base-spanish-wwm-cased`. El profesor indicó en clase que el
+fine-tuning de un transformer no aplica para este miniproyecto — se trabajará en una entrega
+posterior del curso, donde tendrá el tiempo y el contexto teórico que merece.
+
+**Decisión.** No implementar la Sección 8. Se deja una nota explícita en el notebook
+(en vez de una celda vacía o un `TODO`) explicando la exclusión y por qué no afecta la
+rúbrica: el criterio "Implementación de técnicas" exige *al menos tres* técnicas comparadas,
+y el notebook ya presenta tres representaciones genuinamente distintas — TF-IDF (bolsa de
+palabras dispersa), LSTM desde cero (embeddings aprendidos con memoria recurrente) y BiLSTM
+con embeddings de spaCy en sus variantes congelada y afinada (embeddings preentrenados con
+lectura bidireccional). Las Extensiones A-D y la tarea de contraste `Type` (Secciones 9-13)
+aportan además el diferencial de Innovación que el SPEC había repartido entre el Modelo 4 y
+las extensiones.
+
+**Alternativas descartadas.** Implementar una versión reducida de BETO (features congeladas
+sin fine-tuning) solo para tener una cuarta fila en la tabla comparativa: se descarta porque
+contradice la indicación explícita del profesor, no porque falte tiempo o cómputo.
+
+**Consecuencias.** `requirements.txt` ya no necesita `transformers` ni `accelerate`. La
+"escalera de representaciones" del notebook queda en tres escalones en lugar de cuatro; se
+compensa con la profundidad de las extensiones, que es donde el SPEC concentraba el valor
+de Innovación de todos modos.
+
+---
+
 ## Plantilla para nuevas entradas
 
 ```markdown

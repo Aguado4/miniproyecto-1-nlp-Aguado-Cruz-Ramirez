@@ -19,22 +19,23 @@ huggingface-hub>=0.23
 torch>=2.2
 torchmetrics>=1.4
 
-# --- Transformers en español (BETO) ---
-transformers>=4.40
-accelerate>=0.30
+# --- Modelo 4 (BETO) excluido de esta entrega por indicación del profesor ---
+# Ver docs/DECISIONS.md §D-009. transformers/accelerate ya no son necesarios.
 
 # --- Embeddings preentrenados en español ---
 # El modelo de vectores se descarga aparte:
 #   python -m spacy download es_core_news_lg
 spacy>=3.7
 
+# --- Corrección de codificación (mojibake), sección 3.1 ---
+ftfy>=6.2
+
 # --- Visualización ---
 matplotlib>=3.8
 seaborn>=0.13
 
 # --- Proyección 2D del espacio de embeddings (Extensión D) ---
-# scikit-learn ya trae t-SNE; umap-learn es opcional y más lento de instalar.
-umap-learn>=0.5
+# Usamos TSNE de scikit-learn; no hace falta umap-learn.
 
 # --- Entorno ---
 jupyterlab>=4.0
