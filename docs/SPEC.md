@@ -160,10 +160,12 @@ padding no contamine el estado oculto (mejora real sobre el notebook guía, que 
 **Aceptación:** se reporta el % de vocabulario cubierto por los vectores y se comparan las
 dos variantes.
 
-### Sección 8 — Modelo 4: Transformer en español (BETO)
-Fine-tuning de `dccuchile/bert-base-spanish-wwm-cased`. Se documenta el costo
-computacional frente a la ganancia. Si no hay GPU, se degrada a extracción de features
-congeladas + clasificador lineal, y se dice explícitamente en el notebook.
+### Sección 8 — Modelo 4: Transformer en español (BETO) — **excluido de esta entrega**
+~~Fine-tuning de `dccuchile/bert-base-spanish-wwm-cased`~~. El profesor indicó que el
+fine-tuning de un transformer no aplica para este miniproyecto (ver `DECISIONS.md` §D-009).
+La sección se deja como una nota explícita en el notebook, no como código. No afecta el
+criterio de "al menos tres técnicas" de la rúbrica: los Modelos 1-3 ya lo satisfacen, y la
+Extensión C (BiLSTM + atención) termina siendo el mejor modelo del notebook.
 
 ### Sección 9 — Extensión A: tratamiento ordinal de la polaridad
 Compara sobre la mejor arquitectura recurrente:
