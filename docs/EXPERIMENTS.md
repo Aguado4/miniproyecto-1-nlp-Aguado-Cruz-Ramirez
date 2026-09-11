@@ -1,4 +1,4 @@
-# EXPERIMENTS — Bitácora de resultados
+# EXPERIMENTS - Bitácora de resultados
 
 > **Regla:** aquí solo se escriben números que efectivamente se ejecutaron.
 > Nada de estimaciones ni de valores esperados. Si un experimento no se corrió,
@@ -19,7 +19,7 @@ Entorno de la corrida de referencia (Restart & Run All completo, sin errores):
 
 ---
 
-## 1. Baselines — Split A, test
+## 1. Baselines - Split A, test
 
 | Baseline | Accuracy | macro-F1 | MAE | QWK |
 |---|---:|---:|---:|---:|
@@ -29,9 +29,9 @@ Entorno de la corrida de referencia (Restart & Run All completo, sin errores):
 Valores teóricos esperados sobre la distribución completa: accuracy 0.656, macro-F1 ≈ 0.158.
 Confirmado: la submuestra estratificada reproduce esas cifras casi exactas.
 
-## 2. Modelos principales — tarea polaridad, Split A, test
+## 2. Modelos principales - tarea polaridad, Split A, test
 
-Modelo 4 (BETO) excluido de esta entrega — ver `docs/DECISIONS.md` §D-009. En su lugar se
+Modelo 4 (BETO) excluido de esta entrega - ver `docs/DECISIONS.md` §D-009. En su lugar se
 añade el Modelo 3c (BiLSTM + atención, Extensión C), que resultó ser el mejor modelo del
 notebook.
 
@@ -42,7 +42,7 @@ notebook.
 | 3a | BiLSTM + spaCy (congelados) | 0.4530 | 0.6152 | 0.485 | 0.6525 | 9,441,605 | 39.0 |
 | 3b | BiLSTM + spaCy (afinados) | 0.4863 | 0.6358 | 0.431 | 0.6942 | 9,441,605 | 38.9 |
 | 3c | BiLSTM + atención (Ext. C, afinados) | **0.5274** | 0.6758 | 0.362 | 0.7546 | 9,441,862 | 88.4 |
-| ~~4~~ | ~~BETO fine-tuned~~ | — | — | — | — | — | excluido (§D-009) |
+| ~~4~~ | ~~BETO fine-tuned~~ | - | - | - | - | - | excluido (§D-009) |
 
 ### F1 por clase
 
@@ -54,7 +54,7 @@ notebook.
 | BiLSTM + spaCy (afinados) | 0.524 | 0.311 | 0.381 | 0.433 | 0.784 |
 
 Hipótesis contrastada: las clases 2★ y 3★ son, en efecto, las peores en todos los modelos
-(F1 tan bajo como 0.17-0.31), muy por debajo de 5★ (0.76-0.81) — confirmado.
+(F1 tan bajo como 0.17-0.31), muy por debajo de 5★ (0.76-0.81) - confirmado.
 
 Nota: el LSTM desde cero rindió notablemente peor en esta corrida local (macro-F1 0.295) que
 en una corrida previa en Colab/T4 (0.44 con la misma configuración y semilla); ambas corridas
@@ -63,7 +63,7 @@ variación en la optimización de una red que ya mostraba señales de sobreajust
 (pérdida de entrenamiento bajando mientras el macro-F1 de validación se estanca). Se reporta
 el número de la corrida final versionada en el `.ipynb`, que es la que debe reproducirse.
 
-## 3. Extensión A — tratamiento ordinal
+## 3. Extensión A - tratamiento ordinal
 
 Arquitectura fija: 3b · BiLSTM + spaCy (afinada), la mejor arquitectura recurrente por
 macro-F1 antes de añadir atención.
@@ -78,7 +78,7 @@ Respuesta: sí mejora el MAE y el QWK de forma clara, sin sacrificar macro-F1 (d
 mejora ligeramente). Los errores se concentran más cerca de la diagonal: el % de errores
 graves (≥2 estrellas) cae casi a la mitad.
 
-## 4. Extensión B — generalización geográfica
+## 4. Extensión B - generalización geográfica
 
 Regiones held-out del Split B (`docs/DECISIONS.md`, ya fijadas en el notebook §4.2):
 Chiapas, Baja California Sur y Querétaro (7,456 reseñas de test, 18.5% de la submuestra).
@@ -97,7 +97,7 @@ Respuesta: el rendimiento **no cae** ante destinos nunca vistos; sube ligerament
 inspección cualitativa de errores no mostró un patrón asociado a topónimos. Ver la lectura
 completa en el notebook, Sección 10 (contradice la hipótesis inicial, y se reporta como tal).
 
-## 5. Extensión C — atención
+## 5. Extensión C - atención
 
 | Variante | macro-F1 | Δ vs. BiLSTM sin atención (3b) |
 |---|---:|---:|
@@ -111,7 +111,7 @@ este agregado global (artefacto del desbalance: 65% de las reseñas son 5★), p
 visualización por polaridad individual sí muestra atención concentrada en negaciones y
 adjetivos negativos para reseñas de 1★-2★.
 
-## 6. Extensión D — espacio de embeddings
+## 6. Extensión D - espacio de embeddings
 
 Cobertura del vocabulario del corpus en `es_core_news_lg`: 74.4% por tipos, 99.1% por tokens
 (EDA §3.7).
@@ -134,7 +134,7 @@ sentimiento, y el afinado no tuvo motivo para moverlos.
 Aritmética vectorial de dominio: `sucio - malo + excelente ≈ impecable` en **ambos** espacios
 (similitud coseno 0.617 preentrenado, 0.623 aprendido).
 
-## 7. Tarea de contraste — `Type`
+## 7. Tarea de contraste - `Type`
 
 | Modelo | macro-F1 | Accuracy |
 |---|---:|---:|

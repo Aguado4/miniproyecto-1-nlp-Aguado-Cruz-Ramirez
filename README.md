@@ -1,10 +1,10 @@
-# Miniproyecto 1 — NLP
+# Miniproyecto 1 - NLP
 
 **Clasificación de polaridad en reseñas turísticas en español: de la bolsa de palabras a los transformers**
 
 Maestría · Universidad Icesi · Curso de Procesamiento de Lenguaje Natural
 
-Autores: Aguado · Cruz · Ramírez
+Autores: Juan José Aguado · Juan David Cruz · Juan Diego Ramírez
 
 ---
 
@@ -43,13 +43,13 @@ split y las mismas métricas, para aislar qué aporta cada salto:
 
 Sobre esa base, cuatro extensiones propias que van más allá del ejemplo del curso:
 
-- **Tratamiento ordinal** — cross-entropy vs. regresión con umbrales vs. codificación
+- **Tratamiento ordinal** - cross-entropy vs. regresión con umbrales vs. codificación
   ordinal acumulativa, evaluadas con MAE y QWK además de F1.
-- **Generalización geográfica** — entrenar sin ver ciertas regiones y medir cuánto cae el
+- **Generalización geográfica** - entrenar sin ver ciertas regiones y medir cuánto cae el
   modelo ante destinos nuevos.
-- **Interpretabilidad con atención** — visualizar qué palabras pesan en cada predicción y
+- **Interpretabilidad con atención** - visualizar qué palabras pesan en cada predicción y
   contrastarlas con el léxico que el EDA identificó como distintivo.
-- **Anatomía del espacio de embeddings** — vecinos de términos del dominio y proyección 2D,
+- **Anatomía del espacio de embeddings** - vecinos de términos del dominio y proyección 2D,
   comparando vectores preentrenados contra los aprendidos en la tarea.
 
 Y una **tarea de control**: la misma arquitectura, sin cambio alguno, prediciendo el tipo de
@@ -59,7 +59,7 @@ de la tarea.
 
 ## El corpus
 
-[`vg055/Rest-Mex2025`](https://huggingface.co/datasets/vg055/Rest-Mex2025) — 208,051 reseñas
+[`vg055/Rest-Mex2025`](https://huggingface.co/datasets/vg055/Rest-Mex2025) - 208,051 reseñas
 turísticas en español, del shared task Rest-Mex 2025 (IberLEF). CC-BY-4.0.
 Campos: título, reseña, polaridad (1–5), pueblo (40), región (19) y tipo (3).
 
@@ -95,7 +95,7 @@ Tres hallazgos centrales, desarrollados en la Sección 15 del notebook:
    sube mucho el macro-F1, pero corta a la mitad los errores graves (a ≥2 estrellas de
    distancia).
 3. El modelo generaliza igual de bien a regiones de México nunca vistas en entrenamiento
-   (Chiapas, Baja California Sur, Querétaro) — contra la hipótesis inicial de que dependería
+   (Chiapas, Baja California Sur, Querétaro) - contra la hipótesis inicial de que dependería
    de memorizar destinos.
 
 ## Cómo ejecutarlo
@@ -155,8 +155,8 @@ HuggingFace antes de diseñar los experimentos. `docs/SPEC.md` define qué se co
 
 ## Relación con los notebooks guía
 
-Este trabajo parte de los notebooks 3 y 4 de la Sesión 1 del curso, pero con datos propios
-—como exige la consigna— y corrigiendo tres puntos de los originales que se documentan y se
+Este trabajo parte de los notebooks 3 y 4 de la Sesión 1 del curso, pero con datos propios,
+como exige la consigna, y corrigiendo tres puntos de los originales que se documentan y se
 explican dentro del notebook: la construcción del vocabulario por orden de aparición en lugar
 de por frecuencia, la lectura del último estado oculto de la LSTM sobre secuencias con padding,
 y el uso del accuracy como única métrica en un problema fuertemente desbalanceado.

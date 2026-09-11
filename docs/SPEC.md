@@ -1,4 +1,4 @@
-# SPEC — Especificación del entregable
+# SPEC - Especificación del entregable
 
 > **Estado:** aprobado · **Versión:** 1.0 · **Última actualización:** 2026-09-05
 >
@@ -41,8 +41,8 @@ no la aplicación mecánica de una receta:
 
 La tarea es clasificación de secuencias de longitud media (mediana ~350 caracteres) donde
 el orden y la negación importan (*«no estuvo mal»* vs. *«estuvo mal»*). Una escalera de
-cuatro representaciones —bolsa de palabras dispersa, embeddings aprendidos con memoria
-recurrente, embeddings preentrenados, y atención contextual completa— permite aislar
+cuatro representaciones, bolsa de palabras dispersa, embeddings aprendidos con memoria
+recurrente, embeddings preentrenados, y atención contextual completa, permite aislar
 **qué aporta cada nivel de modelado sobre esta tarea concreta**, que es exactamente la
 transición conceptual que los notebooks 3 y 4 del curso plantean.
 
@@ -63,9 +63,9 @@ Resumen: 208,051 reseñas, campos `Title`, `Review`, `Polarity` (1–5), `Town` 
 
 Dos esquemas, ambos sobre la misma submuestra de 40k:
 
-- **Split A — aleatorio estratificado**, 80/10/10, estratificado por `Polarity`.
+- **Split A - aleatorio estratificado**, 80/10/10, estratificado por `Polarity`.
   Es el protocolo estándar y el que se usa para todas las comparaciones entre modelos.
-- **Split B — geográfico**, regiones held-out. Las reseñas de un conjunto de regiones
+- **Split B - geográfico**, regiones held-out. Las reseñas de un conjunto de regiones
   nunca vistas en entrenamiento forman el test. Se usa **solo** en la Extensión B, con el
   mejor modelo, para medir generalización a destinos nuevos.
 
@@ -98,24 +98,24 @@ Ningún modelo se declara «bueno» sin superar ambos en macro-F1.
 
 Archivo único: `notebooks/miniproyecto1-restmex.ipynb`
 
-### Sección 0 — Portada
+### Sección 0 - Portada
 Título, autores, contexto del curso, enunciado del problema en un párrafo, mapa de
 navegación del notebook, y declaración explícita de qué se hereda de los notebooks guía
 y qué es aporte propio.
 
-### Sección 1 — Entorno y reproducibilidad
+### Sección 1 - Entorno y reproducibilidad
 Detección Colab/local, instalación de dependencias, fijación de `SEED = 42` en todas las
 librerías, detección de dispositivo, y una **tabla de configuración** que ajusta tamaños y
 épocas según haya GPU o no. Imprime versiones de librerías para trazabilidad.
 
 **Aceptación:** corre idéntico en Colab-GPU, Colab-CPU y local; imprime la configuración activa.
 
-### Sección 2 — Carga del corpus
+### Sección 2 - Carga del corpus
 Descarga desde HuggingFace, conversión a `pandas`, inspección inicial (`shape`, `dtypes`,
 `head`), y presentación de 3 reseñas completas de distinta polaridad para que el lector
 vea el material crudo.
 
-### Sección 3 — Análisis exploratorio (EDA)
+### Sección 3 - Análisis exploratorio (EDA)
 
 Sobre el corpus completo. Cada subsección produce al menos una gráfica y su lectura.
 
@@ -133,7 +133,7 @@ Sobre el corpus completo. Cada subsección produce al menos una gráfica y su le
 **Aceptación:** §3.8 conecta explícitamente cada hallazgo con una decisión posterior.
 El EDA no es decorativo: es el que fija `MAX_LEN`, la métrica, y el diseño del Split B.
 
-### Sección 4 — Preprocesamiento y tokenización
+### Sección 4 - Preprocesamiento y tokenización
 Tokenizador propio con normalización que **preserva la ñ y las tildes** (el del notebook
 guía las conserva en la clase de caracteres pero conviene verificarlo y documentarlo),
 manejo de URLs, números y puntuación. Construcción del vocabulario **por frecuencia con
@@ -142,16 +142,16 @@ Se muestra el efecto del tokenizador sobre una reseña real, ida y vuelta.
 
 **Aceptación:** se reporta tamaño de vocabulario, tasa de `[UNK]` y tasa de truncamiento.
 
-### Sección 5 — Modelo 1: TF-IDF + Regresión Logística
+### Sección 5 - Modelo 1: TF-IDF + Regresión Logística
 Baseline clásico y fuerte. n-gramas 1–2, `class_weight='balanced'`. Sirve de piso: si una
 red neuronal no lo supera, la red no está aportando.
 
-### Sección 6 — Modelo 2: LSTM desde cero
+### Sección 6 - Modelo 2: LSTM desde cero
 Réplica fiel de la arquitectura del notebook 3 (`Embedding → LSTM → Linear`) sobre nuestros
 datos. Es el punto de comparación con el material del curso. Loop de entrenamiento explícito
 con curvas de pérdida y macro-F1 por época.
 
-### Sección 7 — Modelo 3: BiLSTM + embeddings preentrenados en español
+### Sección 7 - Modelo 3: BiLSTM + embeddings preentrenados en español
 Matriz de embeddings inicializada desde `es_core_news_lg` de spaCy (300d). Dos variantes:
 **congelados** vs. **afinados**. Bidireccional, con `pack_padded_sequence` para que el
 padding no contamine el estado oculto (mejora real sobre el notebook guía, que lee
@@ -160,14 +160,14 @@ padding no contamine el estado oculto (mejora real sobre el notebook guía, que 
 **Aceptación:** se reporta el % de vocabulario cubierto por los vectores y se comparan las
 dos variantes.
 
-### Sección 8 — Modelo 4: Transformer en español (BETO) — **excluido de esta entrega**
+### Sección 8 - Modelo 4: Transformer en español (BETO) - **excluido de esta entrega**
 ~~Fine-tuning de `dccuchile/bert-base-spanish-wwm-cased`~~. El profesor indicó que el
 fine-tuning de un transformer no aplica para este miniproyecto (ver `DECISIONS.md` §D-009).
 La sección se deja como una nota explícita en el notebook, no como código. No afecta el
 criterio de "al menos tres técnicas" de la rúbrica: los Modelos 1-3 ya lo satisfacen, y la
 Extensión C (BiLSTM + atención) termina siendo el mejor modelo del notebook.
 
-### Sección 9 — Extensión A: tratamiento ordinal de la polaridad
+### Sección 9 - Extensión A: tratamiento ordinal de la polaridad
 Compara sobre la mejor arquitectura recurrente:
 - (a) cross-entropy estándar,
 - (b) regresión + umbrales optimizados,
@@ -176,7 +176,7 @@ Compara sobre la mejor arquitectura recurrente:
 Se evalúa con MAE y QWK además de macro-F1, y se muestra cómo cambia la estructura de la
 matriz de confusión (los errores deberían concentrarse cerca de la diagonal).
 
-### Sección 10 — Extensión B: generalización geográfica
+### Sección 10 - Extensión B: generalización geográfica
 Entrena el mejor modelo con Split A y con Split B y compara la caída. Se analiza qué
 regiones son más difíciles y se inspeccionan errores para ver si el modelo se apoyaba en
 señales de destino (nombres de hoteles, topónimos) en lugar de señales de sentimiento.
@@ -184,13 +184,13 @@ señales de destino (nombres de hoteles, topónimos) en lugar de señales de sen
 **Hipótesis a contrastar:** el macro-F1 cae de forma apreciable bajo Split B; si no cae,
 también es un hallazgo y se reporta como tal.
 
-### Sección 11 — Extensión C: BiLSTM con atención e interpretabilidad
+### Sección 11 - Extensión C: BiLSTM con atención e interpretabilidad
 Capa de atención aditiva sobre las salidas de la BiLSTM. Se visualizan los pesos sobre
 reseñas reales de cada polaridad (texto coloreado por peso). Se examina si el modelo atiende
-a los términos que el EDA §3.5 identificó como distintivos — es decir, se cierra el círculo
+a los términos que el EDA §3.5 identificó como distintivos - es decir, se cierra el círculo
 entre exploración y modelo.
 
-### Sección 12 — Extensión D: el espacio de embeddings
+### Sección 12 - Extensión D: el espacio de embeddings
 Retoma la parte de similitud del notebook 3 pero con vocabulario del dominio:
 - vecinos más cercanos de términos propios (*sargazo*, *alberca*, *mesero*, *amabilidad*),
   comparando embeddings preentrenados vs. los aprendidos por la red en la tarea;
@@ -200,12 +200,12 @@ Retoma la parte de similitud del notebook 3 pero con vocabulario del dominio:
 **Aceptación:** debe mostrar que los embeddings *aprendidos en la tarea* organizan el
 espacio por sentimiento, mientras los preentrenados lo organizan por tema.
 
-### Sección 13 — Tarea de contraste: predecir `Type`
+### Sección 13 - Tarea de contraste: predecir `Type`
 La mejor arquitectura, sin cambios, sobre `Type` (3 clases, balanceadas). Sirve para
 demostrar que el macro-F1 modesto en polaridad **no es culpa del modelo ni del pipeline**,
 sino de la naturaleza ordinal y del desbalance de la tarea.
 
-### Sección 14 — Comparación global y análisis de errores
+### Sección 14 - Comparación global y análisis de errores
 - Tabla única: modelo × (macro-F1, accuracy, MAE, QWK, tiempo, nº de parámetros).
 - Gráfica de costo (tiempo/parámetros) contra beneficio (macro-F1).
 - Matrices de confusión lado a lado.
@@ -213,7 +213,7 @@ sino de la naturaleza ordinal y del desbalance de la tarea.
   causa (ironía, reseña mixta, texto muy corto, polaridad incoherente con el texto).
 - Análisis de los casos donde *todos* los modelos fallan.
 
-### Sección 15 — Conclusiones y limitaciones
+### Sección 15 - Conclusiones y limitaciones
 Hallazgos numerados, respuesta explícita a la pregunta del problema, limitaciones honestas
 (submuestra, un solo corpus, ruido de etiquetas del propio TripAdvisor) y trabajo futuro.
 

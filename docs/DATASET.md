@@ -1,4 +1,4 @@
-# DATASET — Ficha del corpus
+# DATASET - Ficha del corpus
 
 > Todas las cifras de este documento fueron verificadas contra la API de estadísticas de
 > HuggingFace el 2026-09-05, **antes** de escribir una sola línea del notebook.
@@ -40,7 +40,7 @@ df = ds.to_pandas()
 
 ## 3. Distribuciones verificadas
 
-### 3.1 `Polarity` — desbalance extremo
+### 3.1 `Polarity` - desbalance extremo
 
 | Estrellas | n | % |
 |---|---:|---:|
@@ -54,7 +54,7 @@ Media 4.45. **Baseline de clase mayoritaria: accuracy 0.6564, macro-F1 ≈ 0.158
 
 Consecuencia directa: el accuracy no puede ser la métrica de progreso. Ver `SPEC.md` §3.2.
 
-### 3.2 `Type` — razonablemente balanceada
+### 3.2 `Type` - razonablemente balanceada
 
 | Tipo | n | % |
 |---|---:|---:|
@@ -65,7 +65,7 @@ Consecuencia directa: el accuracy no puede ser la métrica de progreso. Ver `SPE
 Este contraste con §3.1 es deliberado y es la razón por la que `Type` entra como tarea de
 control en `SPEC.md` §13.
 
-### 3.3 `Region` — sesgo geográfico severo
+### 3.3 `Region` - sesgo geográfico severo
 
 19 regiones. Las principales:
 
@@ -84,7 +84,7 @@ control en `SPEC.md` §13.
 | Guerrero | 4,201 | 2.02% |
 | Morelos | 3,445 | 1.66% |
 
-### 3.4 `Town` — 40 destinos, igual de concentrados
+### 3.4 `Town` - 40 destinos, igual de concentrados
 
 Tulum (45,345 · 21.8%), Isla_Mujeres (29,826 · 14.3%), San_Cristobal_de_las_Casas (13,060),
 Valladolid (11,637), Bacalar (10,822), Palenque (9,512), Sayulita (7,337),

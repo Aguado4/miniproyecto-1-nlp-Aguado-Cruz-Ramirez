@@ -1,4 +1,4 @@
-# DECISIONS — Registro de decisiones de diseño
+# DECISIONS - Registro de decisiones de diseño
 
 Formato ADR abreviado. Cada entrada: contexto, decisión, alternativas descartadas y
 consecuencias. Se añade una entrada cada vez que se toma una decisión no obvia.
@@ -145,7 +145,7 @@ similitud del notebook 3 del curso, que usa spaCy.
 **Riesgo abierto.** Hay que verificar en el notebook que `es_core_news_lg` efectivamente
 trae vectores densos y medir la cobertura del vocabulario del dominio. Si la cobertura
 resulta muy baja, se documenta como hallazgo (el vocabulario turístico regional no está bien
-representado en corpus de español general) — que también es un resultado válido y publicable
+representado en corpus de español general) - que también es un resultado válido y publicable
 en el notebook.
 
 ---
@@ -167,13 +167,13 @@ resultados sin ejecutar nada.
 
 **Contexto.** El SPEC original (§2, Sección 8) contemplaba cuatro modelos, el último un
 fine-tuning de `dccuchile/bert-base-spanish-wwm-cased`. El profesor indicó en clase que el
-fine-tuning de un transformer no aplica para este miniproyecto — se trabajará en una entrega
+fine-tuning de un transformer no aplica para este miniproyecto - se trabajará en una entrega
 posterior del curso, donde tendrá el tiempo y el contexto teórico que merece.
 
 **Decisión.** No implementar la Sección 8. Se deja una nota explícita en el notebook
 (en vez de una celda vacía o un `TODO`) explicando la exclusión y por qué no afecta la
 rúbrica: el criterio "Implementación de técnicas" exige *al menos tres* técnicas comparadas,
-y el notebook ya presenta tres representaciones genuinamente distintas — TF-IDF (bolsa de
+y el notebook ya presenta tres representaciones genuinamente distintas - TF-IDF (bolsa de
 palabras dispersa), LSTM desde cero (embeddings aprendidos con memoria recurrente) y BiLSTM
 con embeddings de spaCy en sus variantes congelada y afinada (embeddings preentrenados con
 lectura bidireccional). Las Extensiones A-D y la tarea de contraste `Type` (Secciones 9-13)
